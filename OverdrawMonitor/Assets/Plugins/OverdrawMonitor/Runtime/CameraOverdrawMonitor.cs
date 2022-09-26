@@ -11,6 +11,7 @@
 // be processed. But since we usually have huge render targets (in comparison to 32x32 pixel blocks) and
 // the error comes from the part of the image that is not important, this is acceptable.
 
+using UnityEditor;
 using UnityEngine;
 
 public class CameraOverdrawMonitor : MonoBehaviour
@@ -37,8 +38,8 @@ public class CameraOverdrawMonitor : MonoBehaviour
     void Awake()
     {
         // Compute shader
-        _computeShader = Resources.Load<ComputeShader>("OverdrawParallelReduction");
-
+        string shaderPath = "Assets/Plugins/OverdrawMonitor/Editor/OverdrawParallelReduction.compute";
+        _computeShader = AssetDatabase.LoadAssetAtPath<ComputeShader>(shaderPath);
         // Replacement shader
         _replacementShader = Shader.Find("Debug/OverdrawInt");
         Shader.SetGlobalFloat("OverdrawFragmentWeight", 1f / (GroupDimension * GroupDimension));
