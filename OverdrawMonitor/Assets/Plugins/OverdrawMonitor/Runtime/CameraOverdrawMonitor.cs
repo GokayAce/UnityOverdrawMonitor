@@ -11,6 +11,8 @@
 // be processed. But since we usually have huge render targets (in comparison to 32x32 pixel blocks) and
 // the error comes from the part of the image that is not important, this is acceptable.
 
+#if UNITY_EDITOR
+
 using UnityEditor;
 using UnityEngine;
 
@@ -125,3 +127,4 @@ public class CameraOverdrawMonitor : MonoBehaviour
         _targetCamera.enabled = originalIsCameraEnabled;
     }
 }
+#endif
